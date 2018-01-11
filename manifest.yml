@@ -8,4 +8,4 @@ applications:
   domain: mybluemix.net
   host: sleuth-header-demo
   env:
-    SPRING_PROFILES_ACTIVE: bluemix
+    SPRING_PROFILES_ACTIVE: cloud
