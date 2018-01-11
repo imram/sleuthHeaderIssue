@@ -1,0 +1,11 @@
+applications:
+- name: sleuth-header-demo
+  buildpack: liberty-for-java
+  path: target/sleuth-header-demo-0.0.1-SNAPSHOT.jar
+  instances: 1
+  memory: 512M
+  disk_quota: 1024M
+  domain: mybluemix.net
+  host: sleuth-header-demo
+  env:
+    SPRING_PROFILES_ACTIVE: bluemix
