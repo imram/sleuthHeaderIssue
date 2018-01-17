@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.sleuth.annotation.NewSpan;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,8 +18,6 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class SleuthHeaderController {
     public static final Logger LOGGER = LoggerFactory.getLogger(SleuthHeaderController.class);
-    public static final String HTTP_LOCALHOST_URL = "http://localhost:9090/";
-    public static final String HTTP_BLUEMIX_URL = "https://sleuth-header-demo.mybluemix.net/";
 
     @Value("${home.url}")
     String url;
@@ -30,10 +27,8 @@ public class SleuthHeaderController {
 
 
 
-    @NewSpan
     @GetMapping(value = "/hello")
-    public String hello(@RequestParam(name = "name") String name,
-            @RequestHeader(name = "X-B3-TraceId", required = false) String traceId) {
+    public String hello(@RequestParam(name = "name") String name) {
 
         LOGGER.info(String.format("%s Forwarding to Home", name));
 
@@ -47,7 +42,6 @@ public class SleuthHeaderController {
         return response.getBody();
     }
 
-    @NewSpan
     @GetMapping(value = "/")
     public String home() {
 
